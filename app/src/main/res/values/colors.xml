@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#E6171717</color>
+
+    <color name="colorAccentHalfTrans">#85131313</color>
+    <color name="colorAccentTrans">#57000000</color>
+
+    <color name="colorLayoutBg">#FCFCFC</color>
+    <color name="colorPlaceHolder">#E4EBEBEB</color>
+
+    <color name="colorApp">#171717</color>
+    <color name="colorCard">#83FFFFFF</color>
+    <color name="colorGuideBack">#323232</color>
+    <color name="colorRed">#D93D1E</color>
+
+    <color name="colorOssBack">#86232323</color>
+
+    <color name="colorMale">#00BCD4</color>
+    <color name="colorFemale">#E91E63</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="colorTrans">#00FFFFFF</color>
+    <color name="colorGang">#95F0F0F0</color>
+
+
+    <color name="colorBlackTrans">#61000000</color>
+
+    <color name="bg_title">#F5A623</color>
+
+
+    <color name="bg_tab_selected">#F5A623</color>
+    <color name="bg_tab_nor">#FFFFFF</color>
+
+
+    <color name="text_tip">#FFFFFF</color>
+    <color name="text_title">#FFFFFF</color>
+    <color name="text_first">#333333</color>
+    <color name="text_second">#999999</color>
+    <color name="text_third">#6F6F6F</color>
+    <color name="text_hint">#A8A8A8</color>
+
+
+    <color name="text_btn_blue">#75B4D9</color>
+    <color name="text_btn_blue_back">#F3F3F3</color>
+
+
+    <color name="bg_inputLin_correct">#C8C7CC</color>
+    <color name="bg_inputLin_idle">#C8C7CC</color>
+    <color name="bg_inputLin_selected">#F5A623</color>
+    <color name="bg_inputLin_error">#EA5050</color>
+
+    <color name="text_inputLin_idle">#FF999999</color>
+    <color name="text_inputLin_error">#EA5050</color>
+
+
+    <color name="colorCellClick">#85EEEEEE</color>
+    <color name="colorBackClick">#90F5A623</color>
+    <color name="colorBg">#59F7F7F7</color>
+
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+
+    <color name="gang">#EBEBEB</color>
+    <color name="star">#FFCC00</color>
+    <color name="cell_idel">#ffffff</color>
+    <color name="cell_touch">#A1C0C0C0</color>
+
+
 </resources>

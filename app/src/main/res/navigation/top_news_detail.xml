@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_news_detail"
+    app:startDestination="@id/NewsDetailFragment">
+    <fragment
+        android:id="@+id/NewsDetailFragment"
+        android:name="com.zzz.oss_rubbishcommunity.ui.fragment.newsdetail.NewsDetailFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_news_detail">
+    </fragment>
+</navigation>
