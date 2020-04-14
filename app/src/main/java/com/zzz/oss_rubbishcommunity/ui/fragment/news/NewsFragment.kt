@@ -82,25 +82,10 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(
         fun showManageChooseDialog(news: NewsResultModel.News) {
                 //弹出编辑+删除的选择弹框
                 showManageChooseDialog(
-                    onEditClick = {
-                        //点击编辑
-                        /*showEditNewsDialog(news) {
-                            viewModel.editNews(
-                                news.newsId,
-                                    news.frontCoverImages[0],
-                                globalManageNewsBinding?.etTitle?.text.toString(),
-                                if (news.isURL()) globalManageNewsBinding?.etUrl?.text.toString()
-                                else globalManageNewsBinding?.etContent?.text.toString(),
-                                avatarFile,
-                                if (globalManageNewsBinding?.checkTop?.isChecked == true) 1 else 0
-                            )
-                        }*/
-                    },
                     onDeleteClick = {
                         //点击删除并确认
-                        //viewModel.deleteNews(newsId = news.id)
+                        viewModel.deleteNews(newsId = news.newsId)
                     })
-
         }
 
         //配置新闻列表
@@ -116,9 +101,9 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(
             )
         }
 
-/*        //添加News按钮
+        //添加News按钮
         binding.btnAdd.setOnClickListener {
-            showAddNewsDialog {
+/*            showAddNewsDialog {
                 viewModel.addNews(
                     globalManageNewsBinding?.etTitle?.text.toString(),
                     if (globalManageNewsBinding?.rbUrl?.isChecked == true) NEWS_TYPE_URL else NEWS_TYPE_TEXT,
@@ -127,8 +112,8 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(
                     avatarFile,
                     if ((globalManageNewsBinding?.checkTop?.isChecked) == true) 1 else 0
                 )
-            }
-        }*/
+            }*/
+        }
 
         //监听刷新控件
         binding.refreshLayout.setOnRefreshListener {

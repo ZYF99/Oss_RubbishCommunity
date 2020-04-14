@@ -9,6 +9,12 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/navigation_machine"
+        android:icon="@drawable/icon_dew"
+        android:title="设备"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/navigation_mine"
         android:icon="@drawable/icon_mine"
         android:title="账户"

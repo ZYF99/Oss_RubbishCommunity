@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.zzhoujay.richtext.RichText
 import com.zzz.oss_rubbishcommunity.ui.base.setupWithNavController
 import com.zzz.oss_rubbishcommunity.R
 import com.zzz.oss_rubbishcommunity.databinding.ActivityMainBinding
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             setupBottomNavigationBar()
         }
 
+        RichText.initCacheDir(this)
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -42,7 +45,8 @@ class MainActivity : AppCompatActivity() {
         val controller = bottomNavigationView.setupWithNavController(
             navGraphIds = listOf(
                 R.navigation.top_news,
-                R.navigation.top_mine
+                R.navigation.top_machine,
+                R.navigation.top_account
             ),
             fragmentManager = supportFragmentManager,
             containerId = R.id.nav_host_fragment_container,
@@ -67,6 +71,11 @@ class MainActivity : AppCompatActivity() {
         } else {
             finish()
         }
+    }
+
+    override fun onDestroy() {
+        RichText.recycle()
+        super.onDestroy()
     }
 
 }

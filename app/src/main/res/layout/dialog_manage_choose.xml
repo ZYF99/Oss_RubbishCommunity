@@ -11,15 +11,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="编辑"
-            android:textColor="@color/black" />
-
-        <TextView
             android:id="@+id/tv_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

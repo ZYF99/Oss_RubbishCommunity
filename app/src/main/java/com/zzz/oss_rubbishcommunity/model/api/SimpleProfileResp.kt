@@ -1,5 +1,7 @@
 package com.zzz.oss_rubbishcommunity.model.api
 
+import com.zzz.oss_rubbishcommunity.manager.sharedpref.SharedPrefModel
+
 data class SimpleProfileResp(
 	val openId: String?,
 	val name: String?,

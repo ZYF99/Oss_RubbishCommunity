@@ -100,6 +100,9 @@ dependencies {
     //富文本编辑器
     compile 'jp.wasabeef:richeditor-android:1.2.2'
 
+    //富文本阅读器
+    implementation 'com.zzhoujay.richtext:richtext:3.0.7'
+
     //SharedPreference
     implementation "com.chibatching.kotpref:kotpref:${kotpref_version}"
     implementation "com.chibatching.kotpref:initializer:${kotpref_version}"

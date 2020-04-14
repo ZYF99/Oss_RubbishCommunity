@@ -33,7 +33,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.ContentActivity" />
+        <activity android:name=".ui.activity.ContentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

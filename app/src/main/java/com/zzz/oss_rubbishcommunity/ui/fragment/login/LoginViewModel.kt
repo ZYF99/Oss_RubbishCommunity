@@ -8,6 +8,7 @@ import com.zzz.oss_rubbishcommunity.MainApplication
 import com.zzz.oss_rubbishcommunity.ui.base.BaseViewModel
 import com.zzz.oss_rubbishcommunity.manager.api.UserService
 import com.zzz.oss_rubbishcommunity.manager.sharedpref.SharedPrefModel
+import com.zzz.oss_rubbishcommunity.model.api.SimpleProfileResp
 import com.zzz.oss_rubbishcommunity.model.api.login.LoginOrRegisterRequestModel
 import com.zzz.oss_rubbishcommunity.model.api.login.LoginOrRegisterResultModel
 import com.zzz.oss_rubbishcommunity.util.*
@@ -63,6 +64,18 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
         SharedPrefModel.token = loginResultModel?.token ?: ""
         SharedPrefModel.uid = loginResultModel?.openId ?: ""
         SharedPrefModel.rememberPassword = rememberPassword.value!!
+        SharedPrefModel.setUserModel {
+            simpleProfileResp = SimpleProfileResp(
+                    openId = loginResultModel?.openId,
+                    name = loginResultModel?.usrProfile?.name,
+                    avatar = loginResultModel?.usrProfile?.avatar,
+                    signature = loginResultModel?.usrProfile?.signature,
+                    country = loginResultModel?.usrProfile?.country,
+                    province = loginResultModel?.usrProfile?.province,
+                    city = loginResultModel?.usrProfile?.city,
+                    age = loginResultModel?.usrProfile?.age
+            )
+        }
     }
 
 }

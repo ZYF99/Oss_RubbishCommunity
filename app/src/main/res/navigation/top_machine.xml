@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_machine"
+    app:startDestination="@id/MachineFragment">
+    <fragment
+        android:id="@+id/MachineFragment"
+        android:name="com.zzz.oss_rubbishcommunity.ui.fragment.managemachine.ManageMachineFragment"
+        android:label="fragment_manage_machine"
+        tools:layout="@layout/fragment_manage_machine" >
+
+    </fragment>
+
+</navigation>

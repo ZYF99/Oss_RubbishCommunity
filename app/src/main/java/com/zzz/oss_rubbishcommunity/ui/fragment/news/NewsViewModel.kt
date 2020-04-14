@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.zzz.oss_rubbishcommunity.manager.api.ImageService
 import com.zzz.oss_rubbishcommunity.manager.api.NewsService
 import com.zzz.oss_rubbishcommunity.model.api.news.AddNewsRequestModel
+import com.zzz.oss_rubbishcommunity.model.api.news.EditNewsRequestModel
 import com.zzz.oss_rubbishcommunity.model.api.news.NewsResultModel
 import com.zzz.oss_rubbishcommunity.ui.base.BaseViewModel
 import com.zzz.oss_rubbishcommunity.util.upLoadImageList
@@ -25,7 +26,7 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
         ).dealRefresh()
                 .doOnApiSuccess {
                     if (it.data?.newsDetailList?.isNotEmpty() == true) {
-                        syncKey = it.data.newsDetailList.minBy { it.newsId }?.newsId
+                        syncKey = it.data.newsDetailList.minBy { it.newsId?:0 }?.newsId
                         newsList.postValue(it.data.newsDetailList)
                     }
                 }
@@ -59,41 +60,11 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
                     .doFinally { isRefreshing.postValue(false) }
 
 
-/*    fun editNews(
-            id: Long,
-            originImageUrl: String,
-            title: String,
-            content: String,
-            imageFile: File?,
-            needTop: Int
-    ) {
-        fun edit(imagePath: String) = newsService.editNews(
-                EditNewsRequestModel(
-                        id,
-                        title,
-                        content,
-                        imagePath,
-                        needTop
-                )
-        )
-
-        val single = if (imageFile != null) {
-            userService.upLoadImage(imageFile)
-                    ?.flatMap {
-                        edit(it.data?.imagePath ?: "")
-                    }
-        } else edit(originImageUrl)
-        single?.doOnApiSuccess {
-            fetchNews()
-        }
-
-    }
-
-    fun deleteNews(newsId: Long) {
+    fun deleteNews(newsId: Long?) {
         newsService.deleteNews(newsId).doOnApiSuccess {
             fetchNews()
         }
-    }*/
+    }
 
 
 }

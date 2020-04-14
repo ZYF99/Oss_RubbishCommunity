@@ -27,11 +27,11 @@ import com.zzz.oss_rubbishcommunity.util.DialogUtil
 
 abstract class BaseFragment<Bind : ViewDataBinding, VM : BaseViewModel>
 constructor(
-    private val clazz: Class<VM>,
-    private val bindingCreator: (LayoutInflater, ViewGroup?) -> Bind
+        private val clazz: Class<VM>,
+        private val bindingCreator: (LayoutInflater, ViewGroup?) -> Bind
 ) : Fragment(), BindLife, KodeinAware {
 
-    var currentDialog:AlertDialog? = null
+    var currentDialog: AlertDialog? = null
 
     constructor(clazz: Class<VM>, @LayoutRes layoutRes: Int) : this(clazz, { inflater, group ->
         DataBindingUtil.inflate(inflater, layoutRes, group, false)
@@ -49,9 +49,9 @@ constructor(
 
     //method
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = bindingCreator.invoke(layoutInflater, container)
@@ -95,7 +95,7 @@ constructor(
 
     //ext
     protected fun <T> LiveData<T>.observe(observer: (T?) -> Unit) where T : Any =
-        observe(viewLifecycleOwner, Observer<T> { v -> observer(v) })
+            observe(viewLifecycleOwner, Observer<T> { v -> observer(v) })
 
     protected fun <T> LiveData<T>.observeNonNull(observer: (T) -> Unit) {
         this.observe(viewLifecycleOwner, Observer {
@@ -106,20 +106,20 @@ constructor(
     }
 
     fun Context.checkNet(): Completable =
-        Completable.create { emitter ->
-            if (!isNetworkAvailable()) emitter.onError(
-                    ApiException(
-                            2222,
-                            getString(R.string.net_unavailable)
-                    )
-            )
-            else emitter.onComplete()
-        }
+            Completable.create { emitter ->
+                if (!isNetworkAvailable()) emitter.onError(
+                        ApiException(
+                                2222,
+                                getString(R.string.net_unavailable)
+                        )
+                )
+                else emitter.onComplete()
+            }
 
     //check network
     protected fun isNetworkAvailable() =
-        (context?.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager)?.activeNetworkInfo?.isConnected
-            ?: false
+            (context?.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager)?.activeNetworkInfo?.isConnected
+                    ?: false
 
     override fun onDestroy() {
         super.onDestroy()
@@ -129,50 +129,47 @@ constructor(
     //安卓原生弹窗  设置信息界面
     fun showViewDialog(view: View?, onConfirmAction: () -> Unit) {
         currentDialog = AlertDialog.Builder(context!!)
-            .setView(view)
-            .setCancelable(false)
-            .setPositiveButton("确定")
-            { _, _ ->
-                //将方法参数中的action行为 传入这里 即达到传入的action在点击之后调用
-                onConfirmAction()
-            }
-            .setNegativeButton("取消",null)
-            .create()
-            currentDialog?.show()
+                .setView(view)
+                .setCancelable(false)
+                .setPositiveButton("确定")
+                { _, _ ->
+                    //将方法参数中的action行为 传入这里 即达到传入的action在点击之后调用
+                    onConfirmAction()
+                }
+                .setNegativeButton("取消", null)
+                .create()
+        currentDialog?.show()
     }
 
-    fun showManageChooseDialog(onEditClick: () -> Unit, onDeleteClick: () -> Unit) {
+    fun showManageChooseDialog(onDeleteClick: () -> Unit) {
         val manageChooseDialogBinding =
-            DataBindingUtil.inflate<DialogManageChooseBinding>(
-                LayoutInflater.from(context),//一个Inflater对象，打开新布局都需要使用Inflater对象
-                R.layout.dialog_manage_choose,//弹窗的layout文件
-                null,//填null 无需多了解
-                false//填false无需多了解
-            )
+                DataBindingUtil.inflate<DialogManageChooseBinding>(
+                        LayoutInflater.from(context),//一个Inflater对象，打开新布局都需要使用Inflater对象
+                        R.layout.dialog_manage_choose,//弹窗的layout文件
+                        null,//填null 无需多了解
+                        false//填false无需多了解
+                )
         val chooseDialog = AlertDialog.Builder(context!!).setView(manageChooseDialogBinding.root)
-            .setCancelable(true).create()
+                .setCancelable(true).create()
 
-        manageChooseDialogBinding.tvEdit.setOnClickListener {
-            onEditClick()
-            chooseDialog.dismiss()
-        }
         manageChooseDialogBinding.tvDelete.setOnClickListener {
             chooseDialog.dismiss()
             AlertDialog.Builder(context!!)
-                .setTitle("警告")
-                .setMessage("删除后将不能恢复，确认删除吗")
-                .setCancelable(true)
-                .setPositiveButton("确认") { _, _ ->
-                    onDeleteClick()
-                }
-                .create()
-                .show()
+                    .setTitle("警告")
+                    .setMessage("删除后将不能恢复，确认删除吗")
+                    .setCancelable(true)
+                    .setNegativeButton("取消") { _, _ -> }
+                    .setPositiveButton("确认") { _, _ ->
+                        onDeleteClick()
+                    }
+                    .create()
+                    .show()
         }
         chooseDialog.show()
     }
 
-    protected enum class EditType{
-        ADD,EDIT
+    protected enum class EditType {
+        ADD, EDIT
     }
 
 }

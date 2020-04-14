@@ -41,17 +41,5 @@
             app:menu="@menu/navigation"
             tools:targetApi="lollipop" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:tint="@color/white"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottomnavigation"
-            app:layout_constraintEnd_toEndOf="@+id/bottomnavigation"
-            app:srcCompat="@drawable/ic_camera" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,10 +1,24 @@
 package com.zzz.oss_rubbishcommunity.util
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
+import com.zzz.oss_rubbishcommunity.R
+import com.zzz.oss_rubbishcommunity.ui.adapter.ImagePagerAdapter
+import com.zzz.oss_rubbishcommunity.ui.widget.FullScreenDialog
+import kotlinx.android.synthetic.main.pop_gallery.*
+
+
+fun showGallery(context: Context, imgList: List<String>, currentPosition: Int) {
+    val gallery = FullScreenDialog(context, R.layout.pop_gallery)
+    gallery.show()
+    gallery.viewpager.adapter =
+            ImagePagerAdapter(context, imgList, gallery.viewpager) { gallery.dismiss() }
+    gallery.viewpager.currentItem = currentPosition
+}
 
 //打开选图界面
 fun Fragment.showAlbum(

@@ -19,8 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
@@ -34,7 +33,8 @@
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="0dp"
-                android:layout_height="0dp">
+                android:layout_height="0dp"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,7 +51,8 @@
                             android:layout_height="0dp"
                             android:background="@color/black"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/buybuybuy"
+                            android:src="@drawable/bg"
+                            android:foreground="#61000000"
                             app:layout_constraintDimensionRatio="w,2:3"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +62,8 @@
                             android:id="@+id/cl_search"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
+                            android:padding="2dp"
+                            android:layout_margin="64dp"
                             android:background="@drawable/bg_lin_search"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -81,12 +83,14 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <EditText
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="按关键字搜索"
-                                android:textColor="#9E9E9E"
+                                android:layout_marginEnd="16dp"
+                                android:background="@null"
+                                android:hint="按关键字搜索"
+                                android:textColor="#5A0000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/img_search"
@@ -97,29 +101,40 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-12dp"
-                        app:cardCornerRadius="8dp">
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_news"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="-12dp"
+                            android:paddingTop="16dp"
+                            android:background="@drawable/bg_detail"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            android:layout_margin="16dp"
                             tools:itemCount="2"
                             tools:listitem="@layout/cell_news" />
-
-                    </androidx.cardview.widget.CardView>
-
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:elevation="2dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:tint="@color/white"
+            android:src="@drawable/icon_add" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
