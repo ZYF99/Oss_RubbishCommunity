@@ -3,6 +3,7 @@ package com.zzz.oss_rubbishcommunity.manager.di
 
 import com.zzz.oss_rubbishcommunity.BuildConfig
 import com.zzz.oss_rubbishcommunity.manager.api.ImageService
+import com.zzz.oss_rubbishcommunity.manager.api.MachineService
 import com.zzz.oss_rubbishcommunity.manager.base.ApiClient
 import com.zzz.oss_rubbishcommunity.manager.base.HeaderInterceptor
 import com.zzz.oss_rubbishcommunity.manager.base.NetErrorInterceptor
@@ -23,6 +24,7 @@ val apiModule = Kodein.Module("api") {
     bind<NewsService>() with singleton { instance<ApiClient>().createService(NewsService::class.java) }
     bind<UserService>() with singleton { instance<ApiClient>().createService(UserService::class.java) }
     bind<ImageService>() with singleton { instance<ApiClient>().createService(ImageService::class.java) }
+    bind<MachineService>() with singleton { instance<ApiClient>().createService(MachineService::class.java) }
 
 /*    bind<BaiDuIdentifyService>() with singleton {
         instance<BaiduIdentifyClient>().createService(

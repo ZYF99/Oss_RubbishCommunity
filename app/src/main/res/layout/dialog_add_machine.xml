@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="machine"
+            type="com.zzz.oss_rubbishcommunity.model.api.machine.Machine" />
+
+        <variable
+            name="isAdd"
+            type="Boolean" />
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp">
+
+        <EditText
+            android:id="@+id/et_mac_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="mac地址"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLength="30"
+            android:padding="4dp"
+            android:text="@{machine.machineMacAddress}" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="设备名"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLength="12"
+            android:padding="4dp"
+            android:text="@{machine.machineName}" />
+
+        <EditText
+            android:id="@+id/et_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="设备类型"
+            android:inputType="number"
+            android:singleLine="true"
+            android:maxLength="6"
+            android:padding="4dp"
+            android:text="@{machine.machineTypeStr}" />
+
+        <EditText
+            android:id="@+id/et_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="设备版本"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLength="12"
+            android:padding="4dp"
+            android:text="@{machine.machineVersion}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="@{isAdd?View.GONE:View.VISIBLE}"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="注册人：" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{machine.machineMaker}" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

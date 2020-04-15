@@ -165,7 +165,6 @@ dependencies {
     implementation "org.kodein.di:kodein-di-generic-jvm:${kodein_version}"
     implementation "org.kodein.di:kodein-di-framework-android-x:${kodein_version}"
 
-
     //Rx
     implementation "io.reactivex.rxjava2:rxjava:$rx_version"
     implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
@@ -209,6 +208,4 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:3.1.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

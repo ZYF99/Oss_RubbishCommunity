@@ -84,6 +84,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <EditText
+                                android:id="@+id/et_search"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
@@ -91,6 +92,7 @@
                                 android:background="@null"
                                 android:hint="按关键字搜索"
                                 android:textColor="#5A0000"
+                                android:text="@={vm.searchKey}"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/img_search"
@@ -128,7 +130,7 @@
             app:layout_constraintBottom_toTopOf="@id/space"
             app:layout_constraintEnd_toEndOf="parent"
             android:tint="@color/white"
-            android:src="@drawable/icon_add" />
+            android:src="@drawable/icon_news" />
 
         <Space
             android:id="@+id/space"

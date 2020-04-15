@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.zzz.oss_rubbishcommunity.manager.api.ImageService
 import com.zzz.oss_rubbishcommunity.manager.api.NewsService
 import com.zzz.oss_rubbishcommunity.model.api.news.AddNewsRequestModel
-import com.zzz.oss_rubbishcommunity.model.api.news.EditNewsRequestModel
 import com.zzz.oss_rubbishcommunity.model.api.news.NewsResultModel
 import com.zzz.oss_rubbishcommunity.ui.base.BaseViewModel
 import com.zzz.oss_rubbishcommunity.util.upLoadImageList
@@ -16,18 +15,24 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
 
     private val newsService by instance<NewsService>()
     private val imageService by instance<ImageService>()
+    var oldNesList = emptyList<NewsResultModel.News>()
     val newsList = MutableLiveData(emptyList<NewsResultModel.News>())
+    val searchKey = MutableLiveData("")
+
+
     val isRefreshing = MutableLiveData(false)
     private var syncKey: Long? = 0
 
-    fun fetchNews() {
+    fun fetchNews(isRefresh:Boolean = false) {
         newsService.fetchNews(
                 syncKey = syncKey
         ).dealRefresh()
                 .doOnApiSuccess {
-                    if (it.data?.newsDetailList?.isNotEmpty() == true) {
-                        syncKey = it.data.newsDetailList.minBy { it.newsId?:0 }?.newsId
+                    val resultList = it.data?.newsDetailList
+                    if (resultList?.isNotEmpty() == true) {
+                        syncKey = if(isRefresh) 0 else it.data.newsDetailList.minBy { it.newsId?:0 }?.newsId
                         newsList.postValue(it.data.newsDetailList)
+                        oldNesList = resultList
                     }
                 }
     }

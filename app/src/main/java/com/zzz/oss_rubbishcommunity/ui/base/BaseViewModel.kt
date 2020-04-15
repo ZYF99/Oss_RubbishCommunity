@@ -28,12 +28,15 @@ abstract class BaseViewModel(app: Application) : AndroidViewModel(app),
     var vmInit = false
 
     protected fun <T> Single<T>.catchApiError(): Single<T> = catchApiError(apiError)
-    protected fun <T> Single<T>.autoProgressDialog(): Single<T> = autoProgressDialog(progressDialog)
-
     protected fun <T> Observable<T>.catchApiError(): Observable<T> = catchApiError(apiError)
-
     protected fun Completable.catchApiError(): Completable = catchApiError(apiError)
     protected fun Completable.autoProgressDialog(): Completable = autoProgressDialog(progressDialog)
+    protected fun <T> Single<T>.autoProgressDialog(): Single<T> = autoProgressDialog(progressDialog)
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
 
     protected fun showDialog(
             @StringRes title: Int = R.string.dialog_title,
@@ -44,14 +47,14 @@ abstract class BaseViewModel(app: Application) : AndroidViewModel(app),
             @DialogUtil.ButtonType negativeButton: Long = DialogUtil.BUTTON_TYPE_CANCEL
     ) {
         dialogEvent.value = Event(
-            DialogEvent(
-                title,
-                msg,
-                positiveButtonText,
-                negativeButtonText,
-                positiveButton,
-                negativeButton
-            )
+                DialogEvent(
+                        title,
+                        msg,
+                        positiveButtonText,
+                        negativeButtonText,
+                        positiveButton,
+                        negativeButton
+                )
         )
     }
 
@@ -61,8 +64,4 @@ abstract class BaseViewModel(app: Application) : AndroidViewModel(app),
                     .doOnSuccess { action.invoke(it) }
                     .bindLife()
 
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.clear()
-    }
 }

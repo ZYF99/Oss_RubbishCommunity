@@ -165,8 +165,6 @@ object DialogUtil {
     )
 }
 
-
-
 fun <T> Single<T>.autoProgressDialog(progressDialog: MutableLiveData<Boolean>): Single<T> =
     compose {
         it
