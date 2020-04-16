@@ -114,6 +114,12 @@
                             tools:itemCount="2"
                             tools:listitem="@layout/cell_news" />
 
+                    <Space
+                        android:id="@+id/space"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
@@ -124,19 +130,16 @@
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="120dp"
             android:elevation="2dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:tint="@color/white"
             android:src="@drawable/icon_news" />
 
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

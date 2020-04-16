@@ -37,29 +37,6 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
                 }
     }
 
-    fun addNews(
-            title: String,
-            type: Int,
-            content: String,
-            imagePathList: List<String>,
-            needTop: Int
-    ) {
-        imageService.upLoadImageList(imagePathList) { }
-                .flatMap { imagePathList ->
-                    newsService.addNews(
-                            AddNewsRequestModel(
-                                    title,
-                                    type,
-                                    content,
-                                    imagePathList,
-                                    needTop
-                            )
-                    )
-                }.doOnApiSuccess {
-                    fetchNews()
-                }
-    }
-
     private fun <T> Single<T>.dealRefresh() =
             doOnSubscribe { isRefreshing.postValue(true) }
                     .doFinally { isRefreshing.postValue(false) }

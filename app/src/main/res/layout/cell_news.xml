@@ -40,7 +40,7 @@
 
                 <ImageView
                         android:id="@+id/img"
-                        imageUrl="@{news.frontCoverImages.get(0)}"
+                        imageUrlWithAddIcon="@{news.foregroundImage}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:scaleType="centerCrop"
@@ -50,7 +50,6 @@
                         tools:src="@drawable/bg" />
 
             </androidx.cardview.widget.CardView>
-
 
             <TextView
                 android:id="@+id/title_text"

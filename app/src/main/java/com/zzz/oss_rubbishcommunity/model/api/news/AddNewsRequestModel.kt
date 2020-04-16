@@ -1,9 +1,10 @@
 package com.zzz.oss_rubbishcommunity.model.api.news
 
 data class AddNewsRequestModel(
-    val title: String,
-    val type: Int,
-    val content: String,
-    val imageList: List<String>?,
-    val top: Int
+        val category: String? = "普通",
+        val frontCoverImages: List<String>?,
+        val newsType: Int?,
+        val payload: String?,
+        val payloadType: Int?,
+        val title: String?
 )

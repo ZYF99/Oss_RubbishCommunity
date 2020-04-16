@@ -23,7 +23,7 @@ fun showGallery(context: Context, imgList: List<String>, currentPosition: Int) {
 //打开选图界面
 fun Fragment.showAlbum(
     selectMax: Int,
-    selectedList: List<LocalMedia>?
+    selectedList: List<LocalMedia>? = emptyList()
 ) {
     //参数很多，根据需要添加
     PictureSelector.create(this)

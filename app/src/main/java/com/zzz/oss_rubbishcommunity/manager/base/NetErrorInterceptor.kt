@@ -10,13 +10,13 @@ class NetErrorInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
-        val resStr = response.body?.source()?.buffer?.clone()?.readString(Charset.defaultCharset())
+        val resStr = response.body()?.source()?.buffer?.clone()?.readString(Charset.defaultCharset())
 
         //判断Http返回码
-        if (response.code in 400..503) {
+        if (response.code() in 400..503) {
             throw ServerError(
-                response.code,
-                response.message
+                response.code(),
+                response.message()
             )
         } else {
             //判断是否是 自己的服务端返回的数据 （数据格式是   {"meta":{"code":...,"msg":"..."},"data":{。。。}} ）

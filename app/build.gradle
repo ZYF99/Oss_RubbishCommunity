@@ -69,8 +69,6 @@ android {
 
 dependencies {
     def rx_version = "2.2.13"
-    def retrofit_version = "2.6.2"
-    def okhttp_version = '4.2.2'
     def kodein_version = "6.4.1"
     def lifecycle_version = "2.2.0"
     def kotpref_version = "2.9.2"
@@ -175,13 +173,21 @@ dependencies {
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 
     //Retrofit OkHttp
-    implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
+    //Network
+    def library_retrofit_version = "2.4.0"
+    def library_ok_http_version = "3.8.1"
+    implementation "com.squareup.okhttp3:okhttp:${library_ok_http_version}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${library_ok_http_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${library_retrofit_version}"
+
+/*    implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttp_version}"
     implementation "com.squareup.okhttp3:logging-interceptor:${okhttp_version}"
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttp_version}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}"
-    implementation "com.squareup.retrofit2:converter-moshi:${retrofit_version}"
-    implementation("com.squareup.retrofit2:retrofit:${retrofit_version}") {
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttp_version}"*/
+
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${library_retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-moshi:${library_retrofit_version}"
+    implementation("com.squareup.retrofit2:retrofit:${library_retrofit_version}") {
         exclude module: 'okhttp'
     }
 

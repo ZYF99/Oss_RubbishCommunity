@@ -4,22 +4,51 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.zzz.oss_rubbishcommunity.manager.api.ImageService
 import com.zzz.oss_rubbishcommunity.manager.api.NewsService
+import com.zzz.oss_rubbishcommunity.model.api.news.AddNewsRequestModel
 import com.zzz.oss_rubbishcommunity.model.api.news.EditNewsRequestModel
 import com.zzz.oss_rubbishcommunity.model.api.news.NewsResultModel
 import com.zzz.oss_rubbishcommunity.ui.base.BaseViewModel
+import com.zzz.oss_rubbishcommunity.util.switchThread
 import com.zzz.oss_rubbishcommunity.util.upLoadImageList
 import org.kodein.di.generic.instance
 
 
 class NewsDetailViewModel(application: Application) : BaseViewModel(application) {
+
     val news = MutableLiveData<NewsResultModel.News>()
     val newsService by instance<NewsService>()
     val imageService by instance<ImageService>()
+    val isAdd = MutableLiveData(false)
     val isEdit = MutableLiveData(false)
+    val payloadType = MutableLiveData(1)
+    val hasEditImage = MutableLiveData(false)
+    fun addNews(
+            title: String,
+            newsType: Int,
+            payload: String,
+            payloadType: Int = news.value?.payloadType ?: 1,
+            action: () -> Unit) {
+        fun add(imgList: List<String> = emptyList()) =
+                newsService.addNews(
+                        AddNewsRequestModel(
+                                frontCoverImages = imgList,
+                                newsType = newsType,
+                                payload = payload,
+                                payloadType = payloadType,
+                                title = title
+                        )
+                ).switchThread()
 
-    fun deleteNews(action: (() -> Unit)?) {
-        newsService.deleteNews(news.value?.newsId).doOnApiSuccess {
-            action?.invoke()
+        if ((news.value?.frontCoverImages ?: emptyList()).isEmpty()) {
+            add()
+        } else {
+            imageService.upLoadImageList(news.value?.frontCoverImages ?: emptyList()) {
+                //onProgress
+            }.flatMap { imagePathList ->
+                add(imagePathList)
+            }
+        }.doOnApiSuccess {
+            action()
         }
     }
 
@@ -33,8 +62,9 @@ class NewsDetailViewModel(application: Application) : BaseViewModel(application)
                         payload = news.value?.payload,
                         title = news.value?.title
                 )
-        )
-        val single = if (news.value?.frontCoverImages?.isNotEmpty() == true) {
+        ).switchThread()
+
+        val single = if (news.value?.frontCoverImages?.isNotEmpty() == true && hasEditImage.value == true) {
             imageService.upLoadImageList(news.value?.frontCoverImages ?: emptyList())
                     .flatMap {
                         edit(it)
@@ -44,4 +74,11 @@ class NewsDetailViewModel(application: Application) : BaseViewModel(application)
 
         }
     }
+
+    fun deleteNews(action: (() -> Unit)?) {
+        newsService.deleteNews(news.value?.newsId).doOnApiSuccess {
+            action?.invoke()
+        }
+    }
+
 }

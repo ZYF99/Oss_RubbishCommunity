@@ -1,6 +1,7 @@
 package com.zzz.oss_rubbishcommunity.ui.fragment.news
 
 import android.view.inputmethod.EditorInfo
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import com.zzz.oss_rubbishcommunity.ui.activity.ContentActivity
 import com.zzz.oss_rubbishcommunity.R
@@ -8,6 +9,7 @@ import com.zzz.oss_rubbishcommunity.databinding.FragmentNewsBinding
 import com.zzz.oss_rubbishcommunity.model.api.news.NewsResultModel
 import com.zzz.oss_rubbishcommunity.ui.base.BaseFragment
 import com.zzz.oss_rubbishcommunity.ui.fragment.newsdetail.INTENT_KEY_NEWS
+import com.zzz.oss_rubbishcommunity.ui.fragment.newsdetail.NewsDetailFragment
 import com.zzz.oss_rubbishcommunity.util.toJson
 
 class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(
@@ -69,7 +71,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(
 
         //添加News按钮
         binding.btnAdd.setOnClickListener {
-
+            jumpToDetail()
         }
 
         //监听刷新控件
@@ -92,12 +94,13 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>(
     }
 
     //跳转至新闻详情页面
-    private fun jumpToDetail(news: NewsResultModel.News) {
+    private fun jumpToDetail(news: NewsResultModel.News? = null) {
         startActivity(
                 ContentActivity.createIntent(
                         context!!,
-                        ContentActivity.Destination.NewsDetail
-                ).putExtra(INTENT_KEY_NEWS, news.toJson())
+                        ContentActivity.Destination.NewsDetail,
+                        bundle = bundleOf(Pair(INTENT_KEY_NEWS, news.toJson()) )
+                )
         )
     }
 

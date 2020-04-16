@@ -63,7 +63,10 @@ fun getGenderDrawable(imageView: ImageView, gender: String?) {
 fun imageWithServerHost(key: String) = "http://image.upuphub.com/$key"
 
 fun getImageFromServer(url: String?) = when {
-    (url ?: "").startsWith("http") || (url ?: "").startsWith("upuphub") -> url
+    (url ?: "").startsWith("http")
+            || (url ?: "").startsWith("upuphub")
+            || (url ?: "").startsWith("/storage/emulated")
+    -> url
     else -> imageWithServerHost(url ?: "")
 }
 
