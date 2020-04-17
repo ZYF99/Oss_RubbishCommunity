@@ -18,8 +18,6 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
     var oldNesList = emptyList<NewsResultModel.News>()
     val newsList = MutableLiveData(emptyList<NewsResultModel.News>())
     val searchKey = MutableLiveData("")
-
-
     val isRefreshing = MutableLiveData(false)
     private var syncKey: Long? = 0
 
@@ -44,7 +42,7 @@ class NewsViewModel(application: Application) : BaseViewModel(application) {
 
     fun deleteNews(newsId: Long?) {
         newsService.deleteNews(newsId).doOnApiSuccess {
-            fetchNews()
+            fetchNews(isRefresh = true)
         }
     }
 

@@ -60,6 +60,7 @@ abstract class BaseViewModel(app: Application) : AndroidViewModel(app),
 
     protected fun <T> Single<T>.doOnApiSuccess(action: (T) -> Unit) =
             switchThread()
+                    .autoProgressDialog()
                     .catchApiError()
                     .doOnSuccess { action.invoke(it) }
                     .bindLife()
