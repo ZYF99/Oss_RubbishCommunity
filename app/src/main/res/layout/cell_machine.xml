@@ -33,54 +33,159 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="设备名："
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{machine.nikeName}"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="@+id/textView6"
+                    tools:text="设备1号" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:gravity="end"
+                    android:text="Mac地址："
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+                <TextView
                     android:id="@+id/textView3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{machine.machineMacAddress}"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="设备1号" />
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    tools:text="Mac 145412" />
+
+
+                <TextView
+                    android:id="@+id/we"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="BindKey："
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ert"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="@+id/ert" />
+
+                <TextView
+                    android:id="@+id/ert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text='@{machine.bindKey}'
+                    android:textColor="@color/black"
+                    android:textIsSelectable="true"
+                    android:layout_marginTop="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView3"
+                    app:layout_constraintStart_toEndOf="@+id/we"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    tools:text="BindKeysdw" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="用户："
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_maker"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/we"
+                    app:layout_constraintTop_toTopOf="@+id/tv_maker" />
 
                 <TextView
                     android:id="@+id/tv_maker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:text='@{machine.machineMaker + " " + machine.simpleProfileResp.openId}'
                     android:textColor="@color/black"
+                    android:layout_marginTop="12dp"
                     android:textSize="14sp"
-                    android:text="@{machine.machineMaker}"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView3"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/ert"
                     tools:text="大熊" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="类型："
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_type"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_type" />
 
                 <TextView
                     android:id="@+id/tv_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:text="@{machine.machineTypeStr}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:text="@{machine.machineMaker}"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_maker"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
                     app:layout_constraintTop_toBottomOf="@+id/tv_maker"
                     tools:text="11" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="版本："
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_version"
+                    app:layout_constraintEnd_toEndOf="@+id/textView"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="@+id/tv_version" />
 
                 <TextView
                     android:id="@+id/tv_version"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{machine.machineVersion}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:text="@{machine.machineVersion}"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_type"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
                     app:layout_constraintTop_toBottomOf="@+id/tv_type"
                     tools:text="1.0.0" />

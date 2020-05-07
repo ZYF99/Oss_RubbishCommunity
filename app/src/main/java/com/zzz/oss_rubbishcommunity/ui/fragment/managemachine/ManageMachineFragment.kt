@@ -1,6 +1,5 @@
 package com.zzz.oss_rubbishcommunity.ui.fragment.managemachine
 
-import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import com.zzz.oss_rubbishcommunity.R

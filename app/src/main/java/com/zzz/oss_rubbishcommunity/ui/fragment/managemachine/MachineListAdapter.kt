@@ -8,7 +8,7 @@ import com.zzz.oss_rubbishcommunity.model.api.machine.Machine
 class MachineListAdapter(
     onCellClick: (Machine) -> Unit
 ) : BaseRecyclerAdapter<Machine, CellMachineBinding>(
-    R.layout.cell_user,
+    R.layout.cell_machine,
     onCellClick
 ) {
     override fun bindData(binding: CellMachineBinding, position: Int) {
